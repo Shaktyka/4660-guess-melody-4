@@ -1,9 +1,12 @@
-// eslint-disable-next-line react/prop-types
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App/app.jsx';
+import App from './components/app/app.jsx';
+
+const settings = {
+  errorsAmount: 3
+};
 
 ReactDOM.render(
-    <App />,
+    <App errorsAmount={settings.errorsAmount} />,
     document.querySelector(`#root`)
 );
