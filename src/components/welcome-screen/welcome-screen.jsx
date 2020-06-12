@@ -11,7 +11,7 @@ const WelcomeScreen = (props) => {
       </div>
       <button
         className="welcome__button"
-        clickhandler={welcomeButtonClickHandler}
+        onClick={welcomeButtonClickHandler}
       >
         <span className="visually-hidden">Начать игру</span>
       </button>
