@@ -1,12 +1,17 @@
 import React from 'react';
-import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 import PropTypes from 'prop-types';
+import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
+
+const welcomeButtonClickHandler = () => {};
 
 const App = (props) => {
   const {errorsAmount} = props;
 
   return (
-    <WelcomeScreen errors={errorsAmount} />
+    <WelcomeScreen
+      errors={errorsAmount}
+      welcomeButtonClickHandler={welcomeButtonClickHandler}
+    />
   );
 };
 
