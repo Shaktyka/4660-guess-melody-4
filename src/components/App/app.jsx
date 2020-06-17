@@ -8,6 +8,8 @@ import GameGenreScreen from '../game-genre-screen/game-genre-screen.jsx';
 
 const welcomeButtonClickHandler = () => {};
 
+const onAnswer = () => {};
+
 const App = (props) => {
   const {errorsAmount, questions} = props;
 
@@ -21,10 +23,10 @@ const App = (props) => {
           />
         </Route>
         <Route exact path="/dev-artist">
-          <GameArtistScreen />
+          <GameArtistScreen question={questions[1]} onAnswer={onAnswer} />
         </Route>
         <Route exact path="/dev-genre">
-          <GameGenreScreen />
+          <GameGenreScreen question={questions[0]} onAnswer={onAnswer} />
         </Route>
       </Switch>
     </BrowserRouter>
