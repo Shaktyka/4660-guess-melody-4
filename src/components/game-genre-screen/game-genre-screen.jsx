@@ -33,6 +33,7 @@ class GameGenreScreen extends PureComponent {
         <section className="game__screen">
           <h2 className="game__title">Выберите инди-рок треки</h2>
           <form className="game__tracks">
+
             <div className="track">
               <button className="track__button track__button--play" type="button"></button>
               <div className="track__status">
@@ -94,7 +95,9 @@ GameGenreScreen.propTypes = {
           src: PropTypes.string,
           genre: PropTypes.string
         }).isRequired
-    )
+    ).isRequired,
+    type: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired
   }).isRequired
 };
 
