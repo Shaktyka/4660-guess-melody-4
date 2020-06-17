@@ -9,7 +9,7 @@ import GameGenreScreen from '../game-genre-screen/game-genre-screen.jsx';
 const welcomeButtonClickHandler = () => {};
 
 const App = (props) => {
-  const {errorsAmount} = props;
+  const {errorsAmount, questions} = props;
 
   return (
     <BrowserRouter>
@@ -32,7 +32,10 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  errorsAmount: PropTypes.number.isRequired
+  errorsAmount: PropTypes.number.isRequired,
+  questions: PropTypes.arrayOf(
+      PropTypes.object.isRequired
+  ).isRequired
 };
 
 export default App;
