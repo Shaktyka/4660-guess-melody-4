@@ -11,6 +11,7 @@ class GameGenreScreen extends PureComponent {
     };
 
     // this._handleChange = this._handleChange.bind(this);
+    // this._handleFormSubmit = this._handleFormSubmit.bind(this);
   }
 
   render() {
