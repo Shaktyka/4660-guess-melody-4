@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GameGenre = () => {
+const GameGenreScreen = () => {
   return (
     <section className="game game--genre">
       <header className="game__header">
@@ -75,4 +75,4 @@ const GameGenre = () => {
   );
 };
 
-export default GameGenre;
+export default GameGenreScreen;

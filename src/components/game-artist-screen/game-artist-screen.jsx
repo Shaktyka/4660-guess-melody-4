@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GameArtist = () => {
+const GameArtistScreen = () => {
   return (
     <section className="game game--artist">
       <header className="game__header">
@@ -63,4 +63,4 @@ const GameArtist = () => {
   );
 };
 
-export default GameArtist;
+export default GameArtistScreen;

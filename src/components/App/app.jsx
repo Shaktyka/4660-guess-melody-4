@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
-import GameArtist from '../game-artist/game-artist.jsx';
-import GameGenre from '../game-genre/game-genre.jsx';
+import GameArtistScreen from '../game-artist-screen/game-artist-screen.jsx';
+import GameGenreScreen from '../game-genre-screen/game-genre-screen.jsx';
 
 const welcomeButtonClickHandler = () => {};
 
@@ -21,10 +21,10 @@ const App = (props) => {
           />
         </Route>
         <Route exact path="/dev-artist">
-          <GameArtist />
+          <GameArtistScreen />
         </Route>
         <Route exact path="/dev-genre">
-          <GameGenre />
+          <GameGenreScreen />
         </Route>
       </Switch>
     </BrowserRouter>
