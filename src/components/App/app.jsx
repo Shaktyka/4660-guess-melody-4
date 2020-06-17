@@ -9,7 +9,7 @@ import GameGenreScreen from '../game-genre-screen/game-genre-screen.jsx';
 const welcomeButtonClickHandler = () => {};
 
 const onAnswer = (question, answers) => {
-  console.log(question, answers);
+  // console.log(question, answers);
 };
 
 const App = (props) => {
