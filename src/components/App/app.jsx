@@ -8,7 +8,9 @@ import GameGenreScreen from '../game-genre-screen/game-genre-screen.jsx';
 
 const welcomeButtonClickHandler = () => {};
 
-const onAnswer = () => {};
+const onAnswer = (question, answers) => {
+  console.log(question, answers);
+};
 
 const App = (props) => {
   const {errorsAmount, questions} = props;
