@@ -30,12 +30,16 @@ const onAnswer = () => {};
 describe(`GameGenreScreen rendering`, () => {
 
   it(`GameGenreScreen renders correctly`, () => {
-    const tree = renderer
-      .create(<GameGenreScreen
+    const tree = renderer.create((
+      <GameGenreScreen
         question={TEST_QUESTION}
         onAnswer={onAnswer}
-      />)
-      .toJSON();
+      />),
+    {
+      createNodeMock: () => {
+        return {};
+      }
+    }).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
