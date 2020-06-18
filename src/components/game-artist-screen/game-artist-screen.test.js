@@ -30,10 +30,10 @@ describe(`GameGenreScreen rendering`, () => {
 
   it(`GameArtistScreen renders correctly`, () => {
     const tree = renderer.create(
-      <GameArtistScreen
-        question={TEST_QUESTION}
-        onAnswer={onAnswer}
-      />
+        <GameArtistScreen
+          question={TEST_QUESTION}
+          onAnswer={onAnswer}
+        />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

@@ -42,7 +42,7 @@ const QUESTIONS_DATA = [
         picture: `${AVATAR_URL}/${Math.random() * 100}`,
         artist: `Lordi`,
       }
-    ],
+    ]
   }
 ];
 
