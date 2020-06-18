@@ -15,19 +15,30 @@ const onAnswer = (question, answers) => {
 class App extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.state = {
+      step: -1,
+    };
+  }
+
+  _renderGameScreen() {
+    const {errorsAmount} = this.props;
+    return (
+      <WelcomeScreen
+        errors={errorsAmount}
+        welcomeButtonClickHandler={welcomeButtonClickHandler}
+      />
+    );
   }
 
   render() {
-    const {errorsAmount, questions} = this.props;
+    const {questions} = this.props;
 
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <WelcomeScreen
-              errors={errorsAmount}
-              welcomeButtonClickHandler={welcomeButtonClickHandler}
-            />
+            {this._renderGameScreen()}
           </Route>
           <Route exact path="/dev-artist">
             <GameArtistScreen question={questions[1]} onAnswer={onAnswer} />
