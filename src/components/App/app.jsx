@@ -8,8 +8,6 @@ import GameGenreScreen from '../game-genre-screen/game-genre-screen.jsx';
 
 import GameType from "../../const.js";
 
-const welcomeButtonClickHandler = () => {};
-
 class App extends PureComponent {
   constructor(props) {
     super(props);

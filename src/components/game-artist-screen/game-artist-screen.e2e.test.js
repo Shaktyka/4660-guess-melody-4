@@ -38,8 +38,8 @@ describe(`GameArtistScreen works correctly`, () => {
   it(`Click on user answer should pass to the callback data-object from which this answer was created`, () => {
     const onAnswer = jest.fn();
     const userAnswer = {
-      artist: `one`,
-      picture: `pic-one`,
+      artist: `Kevin MacLeod`,
+      picture: `https://api.adorable.io/avatars/128/98`,
     };
 
     const screen = shallow(<GameArtistScreen
@@ -58,4 +58,4 @@ describe(`GameArtistScreen works correctly`, () => {
     expect(onAnswer.mock.calls[0][1]).toMatchObject(userAnswer);
   });
 
-};
+});

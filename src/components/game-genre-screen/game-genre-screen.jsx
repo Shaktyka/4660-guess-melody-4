@@ -9,9 +9,6 @@ class GameGenreScreen extends PureComponent {
     this.state = {
       userAnswers: [false, false, false, false]
     };
-
-    // this._handleChange = this._handleChange.bind(this);
-    // this._handleFormSubmit = this._handleFormSubmit.bind(this);
   }
 
   render() {
@@ -97,8 +94,7 @@ GameGenreScreen.propTypes = {
           genre: PropTypes.string
         }).isRequired
     ).isRequired,
-    type: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired
+    type: PropTypes.string.isRequired
   }).isRequired
 };
 
