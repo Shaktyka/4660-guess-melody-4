@@ -22,13 +22,22 @@ class App extends PureComponent {
   }
 
   _renderGameScreen() {
-    const {errorsAmount} = this.props;
-    return (
-      <WelcomeScreen
-        errors={errorsAmount}
-        welcomeButtonClickHandler={welcomeButtonClickHandler}
-      />
-    );
+    const {errorsAmount, questions} = this.props;
+    const {step} = this.state;
+    // const question = questions[step];
+
+    if (step === -1 || step >= questions.length) {
+      return (
+        <WelcomeScreen
+          errors={errorsAmount}
+          welcomeButtonClickHandler={() => {
+            this.setState({
+              step: 0,
+            });
+          }}
+        />
+      );
+    }
   }
 
   render() {
