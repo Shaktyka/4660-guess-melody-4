@@ -89,7 +89,10 @@ class App extends PureComponent {
 App.propTypes = {
   errorsAmount: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(
-      PropTypes.object.isRequired
+      PropTypes.shape({
+        type: PropTypes.string.isRequired,
+        answers: PropTypes.arrayOf(PropTypes.object).isRequired
+      })
   ).isRequired
 };
 
