@@ -1,8 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
-import AudioPlayer from '../audio-player/audio-player.jsx';
-
 class GameGenreScreen extends PureComponent {
   constructor(props) {
     super(props);
@@ -13,7 +11,7 @@ class GameGenreScreen extends PureComponent {
   }
 
   render() {
-    const {onAnswer, question} = this.props;
+    const {onAnswer, question, renderPlayer} = this.props;
     const {userAnswers} = this.state;
     const {genre, answers} = question;
 
@@ -31,10 +29,7 @@ class GameGenreScreen extends PureComponent {
           {
             answers.map((answer, i) => (
               <div className="track" key={Math.random() * 1000}>
-                <AudioPlayer
-                  isPlaying={i === 0}
-                  src={answer.src}
-                />
+                {renderPlayer(answer.src, i)}
                 <div className="game__answer">
                   <input
                     className="game__input visually-hidden"
@@ -75,7 +70,7 @@ GameGenreScreen.propTypes = {
         }).isRequired
     ).isRequired,
     type: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
 };
-
+// renderPlayer: PropTypes.func.isRequired
 export default GameGenreScreen;

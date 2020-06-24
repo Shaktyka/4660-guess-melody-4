@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AudioPlayer from '../audio-player/audio-player.jsx';
-
 const GameArtistScreen = (props) => {
-  const {onAnswer, question} = props;
+  const {onAnswer, question, renderPlayer} = props;
   const {song, answers} = question;
 
   return (
@@ -13,10 +11,7 @@ const GameArtistScreen = (props) => {
 
       <div className="game__track">
         <div className="track">
-          <AudioPlayer
-            isPlaying={true}
-            src={song.src}
-          />
+          {renderPlayer(song.src, 0)}
         </div>
       </div>
 
@@ -63,5 +58,5 @@ GameArtistScreen.propTypes = {
     type: PropTypes.string.isRequired,
   }).isRequired,
 };
-
+// renderPlayer: PropTypes.func.isRequired
 export default GameArtistScreen;

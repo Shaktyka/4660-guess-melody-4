@@ -6,8 +6,12 @@ import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 import GameScreen from '../game-screen/game-screen.jsx';
 import GameArtistScreen from '../game-artist-screen/game-artist-screen.jsx';
 import GameGenreScreen from '../game-genre-screen/game-genre-screen.jsx';
+import withAudioPlayer from '../../hocs/with-audio-player/withAudioPlayer.js';
 
 import GameType from "../../const.js";
+
+const GameArtistScreenWrapped = withAudioPlayer(GameArtistScreen);
+const GameGenreScreenWrapped = withAudioPlayer(GameGenreScreen);
 
 class App extends PureComponent {
   constructor(props) {
@@ -43,7 +47,7 @@ class App extends PureComponent {
             <GameScreen
               type={question.type}
             >
-              <GameArtistScreen
+              <GameArtistScreenWrapped
                 question={question}
                 onAnswer={() => {
                   this.setState((prevState) => ({
@@ -58,7 +62,7 @@ class App extends PureComponent {
             <GameScreen
               type={question.type}
             >
-              <GameGenreScreen
+              <GameGenreScreenWrapped
                 question={question}
                 onAnswer={() => {
                   this.setState((prevState) => ({
