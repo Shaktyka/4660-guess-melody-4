@@ -56,7 +56,7 @@ class AudioPlayer extends PureComponent {
     return (
       <>
         <button
-          className="track__button track__button--${isPlaying ? `pause` : `play`}"
+          className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
           type="button"
           disabled={isLoading}
           onClick={() => {
@@ -72,15 +72,15 @@ class AudioPlayer extends PureComponent {
       </>
     );
   }
-}
 
-componentDidUpdate() {
-  const audio = this._audioRef.current;
+  componentDidUpdate() {
+    const audio = this._audioRef.current;
 
-  if(this.props.isPlaying) {
-    audio.play();
-  } else {
-    audio.pause();
+    if (this.props.isPlaying) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
   }
 }
 
