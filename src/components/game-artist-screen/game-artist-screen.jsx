@@ -57,6 +57,6 @@ GameArtistScreen.propTypes = {
     }).isRequired,
     type: PropTypes.string.isRequired,
   }).isRequired,
+  renderPlayer: PropTypes.func
 };
-// renderPlayer: PropTypes.func.isRequired
 export default GameArtistScreen;
