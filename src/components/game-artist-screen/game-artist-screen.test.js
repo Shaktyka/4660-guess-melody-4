@@ -24,16 +24,19 @@ const TEST_QUESTION = {
   ]
 };
 
-const onAnswer = () => {};
-
 describe(`GameGenreScreen rendering`, () => {
 
   it(`GameArtistScreen renders correctly`, () => {
     const tree = renderer.create(
         <GameArtistScreen
           question={TEST_QUESTION}
-          onAnswer={onAnswer}
-        />
+          onAnswer={() => {}}
+          renderPlayer={() => {}}
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
