@@ -11,7 +11,10 @@ const GameSettings = {
   ERRORS_AMOUNT: 3
 };
 
-const store = createStore(reducer);
+const store = createStore(
+    reducer,
+    window._REDUX_DEVTOOLS_EXTENSION_ ? window._REDUX_DEVTOOLS_EXTENSION_() : (f) => f
+);
 
 ReactDOM.render(
     <Provider store={store}>
