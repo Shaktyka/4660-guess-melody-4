@@ -1,5 +1,5 @@
 import {extend} from './utils.js';
-mport GameType from './const.js';
+import GameType from './const.js';
 
 const STEP_VALUE = 1;
 const MISTAKES_STEP_VALUE = 1;

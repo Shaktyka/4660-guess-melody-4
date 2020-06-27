@@ -2,13 +2,13 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer.js';
 
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 import GameScreen from '../game-screen/game-screen.jsx';
 import GameArtistScreen from '../game-artist-screen/game-artist-screen.jsx';
 import GameGenreScreen from '../game-genre-screen/game-genre-screen.jsx';
 import withAudioPlayer from '../../hocs/with-audio-player/withAudioPlayer.js';
-import {ActionCreator} from '../../reducer.js';
 
 import GameType from "../../const.js";
 
@@ -102,7 +102,9 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  step: state.step
+  step: state.step,
+  errorsCount: state.errorsCount,
+  questions: state.questions
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -110,8 +112,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.incrementStep());
   },
   onUserAnswer(question, answer) {
-    dispatch(ActionCreator.incrementStep());
     dispatch(ActionCreator.incrementMistake(question, answer));
+    dispatch(ActionCreator.incrementStep());
   }
 });
 

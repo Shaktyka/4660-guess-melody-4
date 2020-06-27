@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import {connect} from 'react-redux';
 import GameType from "../../const.js";
 
 import Mistakes from '../mistakes/mistakes.jsx';
@@ -38,7 +39,13 @@ GameScreen.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ]).isRequired
+  ]).isRequired,
+  mistakes: PropTypes.number.isRequired
 };
 
-export default GameScreen;
+const mapStateToProps = (state) = ({
+  mistakes: state.mistakes
+});
+
+export {GameScreen};
+export default connect(mapStateToProps)(GameScreen);
