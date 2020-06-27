@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import App from './app.jsx';
+import {App} from './app.jsx';
 
 const ERRORS_AMOUNT = 4;
 
@@ -57,7 +57,48 @@ describe(`App rendering`, () => {
           <App
             errorsAmount={ERRORS_AMOUNT}
             questions={QUESTIONS_DATA}
+            onUserAnswer={() => {}}
+            onWelcomeButtonClick={() => {}}
+            step={-1}
           />)
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`App renders GameGenreScreen`, () => {
+    const tree = renderer
+      .create(
+          <App
+            errorsAmount={ERRORS_AMOUNT}
+            questions={QUESTIONS_DATA}
+            onUserAnswer={() => {}}
+            onWelcomeButtonClick={() => {}}
+            step={0}
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`App renders GameArtistScreen`, () => {
+    const tree = renderer
+      .create(
+          <App
+            errorsAmount={ERRORS_AMOUNT}
+            questions={QUESTIONS_DATA}
+            onUserAnswer={() => {}}
+            onWelcomeButtonClick={() => {}}
+            step={1}
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
       .toJSON();
 
     expect(tree).toMatchSnapshot();
