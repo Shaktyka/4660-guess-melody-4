@@ -1,5 +1,8 @@
 import {extend} from './utils.js';
 
+const STEP_VALUE = 1;
+const MISTAKES_STEP_VALUE = 1;
+
 const initialState = {
   mistakes: 0,
   step: -1
@@ -8,6 +11,17 @@ const initialState = {
 const ActionType = {
   INCREMENT_MISTAKES: `INCREMENT_MISTAKES`,
   INCREMENT_STEP: `INCREMENT_STEP`
+};
+
+const ActonCreator = {
+  incrementStep: () => ({
+    type: ActionType.INCREMENT_STEP,
+    payload: STEP_VALUE
+  }),
+  incrementMistakes: () => ({
+    type: ActionType.INCREMENT_MISTAKES,
+    payload: MISTAKES_STEP_VALUE
+  })
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,4 +38,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionType};
+export {reducer, ActionType, ActonCreator};
