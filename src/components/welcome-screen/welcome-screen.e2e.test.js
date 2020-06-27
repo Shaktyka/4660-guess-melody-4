@@ -12,12 +12,12 @@ Enzyme.configure({
 describe(`Welcome button click test`, () => {
 
   it(`Welcome button should be clicked`, () => {
-    const welcomeButtonClickHandler = jest.fn();
+    const onWelcomeButtonClick = jest.fn();
 
     const welcomeScreen = shallow(
         <WelcomeScreen
           errors={ERRORS_AMOUNT}
-          welcomeButtonClickHandler={welcomeButtonClickHandler}
+          onWelcomeButtonClick={onWelcomeButtonClick}
         />
     );
 
@@ -25,7 +25,7 @@ describe(`Welcome button click test`, () => {
 
     welcomeButton.props().onClick();
 
-    expect(welcomeButtonClickHandler.mock.calls.length).toBe(1);
+    expect(onWelcomeButtonClick.mock.calls.length).toBe(1);
   });
 
 });

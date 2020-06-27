@@ -13,7 +13,7 @@ const ActionType = {
   INCREMENT_STEP: `INCREMENT_STEP`
 };
 
-const ActonCreator = {
+const ActionCreator = {
   incrementStep: () => ({
     type: ActionType.INCREMENT_STEP,
     payload: STEP_VALUE
@@ -38,4 +38,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionType, ActonCreator};
+export {reducer, ActionType, ActionCreator};
