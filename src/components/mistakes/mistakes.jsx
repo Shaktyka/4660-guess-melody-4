@@ -1,13 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const GameMistakes = () => {
+const Mistakes = (props) => {
+  const {count} = props;
+
+  const mistakes = new Array(count).fill(``);
+
   return (
     <div className="game__mistakes">
-      <div className="wrong"></div>
-      <div className="wrong"></div>
-      <div className="wrong"></div>
+      {
+        mistakes.map((it, i) => <div key={`mistake-${i}`} className="wrong" />)
+      }
     </div>
   );
 };
 
-export default GameMistakes;
+Mistakes.propTypes = {
+  count: PropTypes.number.isRequired
+};
+
+export default Mistakes;
