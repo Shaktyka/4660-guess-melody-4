@@ -28,4 +28,3 @@ describe(`GameScreen renders correctly`, () => {
   });
 
 });
-
