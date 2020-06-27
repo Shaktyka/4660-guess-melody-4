@@ -39,6 +39,7 @@ describe(`GameGenreScreen works correctly`, () => {
         <GameGenreScreen
           onAnswer={onAnswer}
           question={MOCK_QUESTION}
+          renderPlayer={() => {}}
         />
     );
 
@@ -61,6 +62,7 @@ describe(`GameGenreScreen works correctly`, () => {
         <GameGenreScreen
           onAnswer={onAnswer}
           question={MOCK_QUESTION}
+          renderPlayer={() => {}}
         />
     );
 

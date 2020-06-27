@@ -45,6 +45,7 @@ describe(`GameArtistScreen works correctly`, () => {
     const screen = shallow(<GameArtistScreen
       onAnswer={onAnswer}
       question={MOCK_QUESTION}
+      renderPlayer={() => {}}
     />);
 
     const answerInputs = screen.find(`input`);

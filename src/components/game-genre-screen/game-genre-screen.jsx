@@ -11,73 +11,49 @@ class GameGenreScreen extends PureComponent {
   }
 
   render() {
-    const {onAnswer, question} = this.props;
+    const {onAnswer, question, renderPlayer} = this.props;
     const {userAnswers} = this.state;
     const {genre, answers} = question;
 
     return (
-      <section className="game game--genre">
-        <header className="game__header">
-          <a className="game__back" href="#">
-            <span className="visually-hidden">Сыграть ещё раз</span>
-            <img className="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию" />
-          </a>
+      <section className="game__screen">
+        <h2 className="game__title">Выберите {genre} треки</h2>
+        <form
+          className="game__tracks"
+          onSubmit={(evt) => {
+            evt.preventDefault();
+            onAnswer(question, this.state.userAnswers);
+          }}
+        >
 
-          <svg xmlns="http://www.w3.org/2000/svg" className="timer" viewBox="0 0 780 780">
-            <circle className="timer__line" cx="390" cy="390" r="370"
-              style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}} />
-          </svg>
+          {
+            answers.map((answer, i) => (
+              <div className="track" key={Math.random() * 1000}>
+                {renderPlayer(answer.src, i)}
+                <div className="game__answer">
+                  <input
+                    className="game__input visually-hidden"
+                    type="checkbox"
+                    name="answer"
+                    value={`answer-${i}`}
+                    id={`answer-${i}`}
+                    checked={userAnswers[i]}
+                    onChange={(evt) => {
+                      const value = evt.target.checked;
 
-          <div className="game__mistakes">
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-          </div>
-        </header>
-
-        <section className="game__screen">
-          <h2 className="game__title">Выберите {genre} треки</h2>
-          <form
-            className="game__tracks"
-            onSubmit={(evt) => {
-              evt.preventDefault();
-              onAnswer(question, this.state.userAnswers);
-            }}
-          >
-
-            {
-              answers.map((answer, i) => (
-                <div className="track" key={Math.random() * 1000}>
-                  <button className="track__button track__button--play" type="button"></button>
-                  <div className="track__status">
-                    <audio src={answer.src}></audio>
-                  </div>
-                  <div className="game__answer">
-                    <input
-                      className="game__input visually-hidden"
-                      type="checkbox"
-                      name="answer"
-                      value={`answer-${i}`}
-                      id={`answer-${i}`}
-                      checked={userAnswers[i]}
-                      onChange={(evt) => {
-                        const value = evt.target.checked;
-                        // console.log(value);
-
-                        this.setState({
-                          userAnswers: [...userAnswers.slice(0, i), value, ...userAnswers.slice(i + 1)],
-                        });
-                      }}
-                    />
-                    <label className="game__check" htmlFor={`answer-${i}`}>Отметить</label>
-                  </div>
+                      this.setState({
+                        userAnswers: [...userAnswers.slice(0, i), value, ...userAnswers.slice(i + 1)],
+                      });
+                    }}
+                  />
+                  <label className="game__check" htmlFor={`answer-${i}`}>Отметить</label>
                 </div>
-              ))
-            }
+              </div>
+            ))
+          }
 
-            <button className="game__submit button" type="submit">Ответить</button>
-          </form>
-        </section>
+          <button className="game__submit button" type="submit">Ответить</button>
+        </form>
       </section>
     );
   }
@@ -94,7 +70,8 @@ GameGenreScreen.propTypes = {
         }).isRequired
     ).isRequired,
     type: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  renderPlayer: PropTypes.func
 };
 
 export default GameGenreScreen;
