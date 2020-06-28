@@ -19,7 +19,7 @@ class App extends PureComponent {
 
   _renderGameScreen() {
     const {
-      errorsAmount,
+      maxMistakes,
       questions,
       onUserAnswer,
       onWelcomeButtonClick,
@@ -31,7 +31,7 @@ class App extends PureComponent {
     if (step === -1 || step >= questions.length) {
       return (
         <WelcomeScreen
-          errors={errorsAmount}
+          errors={maxMistakes}
           onWelcomeButtonClick={onWelcomeButtonClick}
         />
       );
@@ -76,11 +76,17 @@ class App extends PureComponent {
           <Route exact path="/">
             {this._renderGameScreen()}
           </Route>
-          <Route exact path="/dev-artist">
-            <GameArtistScreen question={questions[1]} onAnswer={() => {}} />
+          <Route exact path="/artist">
+            <GameArtistScreenWrapped
+              question={questions[1]}
+              onAnswer={() => {}}
+            />
           </Route>
-          <Route exact path="/dev-genre">
-            <GameGenreScreen question={questions[0]} onAnswer={() => {}} />
+          <Route exact path="/genre">
+            <GameGenreScreenWrapped
+              question={questions[0]}
+              onAnswer={() => {}}
+            />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -89,7 +95,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  errorsAmount: PropTypes.number.isRequired,
+  maxMistakes: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(
       PropTypes.shape({
         type: PropTypes.string.isRequired,
@@ -103,7 +109,7 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   step: state.step,
-  errorsCount: state.errorsCount,
+  maxMistakes: state.maxMistakes,
   questions: state.questions
 });
 
