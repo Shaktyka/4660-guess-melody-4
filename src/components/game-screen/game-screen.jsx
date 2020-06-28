@@ -43,7 +43,7 @@ GameScreen.propTypes = {
   mistakes: PropTypes.number.isRequired
 };
 
-const mapStateToProps = (state) = ({
+const mapStateToProps = (state) => ({
   mistakes: state.mistakes
 });
 
