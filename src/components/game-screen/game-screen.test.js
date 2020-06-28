@@ -11,7 +11,7 @@ describe(`GameScreen renders correctly`, () => {
     const tree = renderer.create(
         <GameScreen
           type={GameType.ARTIST}
-          mistakes={1}
+          mistakes={3}
         >
           {children}
         </GameScreen>
@@ -24,7 +24,7 @@ describe(`GameScreen renders correctly`, () => {
     const tree = renderer.create(
         <GameScreen
           type={GameType.GENRE}
-          mistakes={2}
+          mistakes={3}
         >
           {children}
         </GameScreen>
