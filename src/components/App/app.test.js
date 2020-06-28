@@ -5,7 +5,9 @@ import configureStore from 'redux-mock-store';
 
 import {App} from './app.jsx';
 
-const ERRORS_AMOUNT = 4;
+const mockStore = configureStore([]);
+
+const ERRORS_AMOUNT = 3;
 
 const QUESTIONS_DATA = [
   {
@@ -52,33 +54,47 @@ const QUESTIONS_DATA = [
     ]
   }
 ];
+
 describe(`App rendering`, () => {
 
-  it(`App renders correctly`, () => {
+  it(`App renders WelcomeScreen`, () => {
+    const store = mockStore({
+      mistakes: 0
+    });
+
     const tree = renderer
       .create(
-          <App
-            errorsAmount={ERRORS_AMOUNT}
-            questions={QUESTIONS_DATA}
-            onUserAnswer={() => {}}
-            onWelcomeButtonClick={() => {}}
-            step={-1}
-          />)
+          <Provider store={store}>
+            <App
+              maxMistakes={ERRORS_AMOUNT}
+              questions={QUESTIONS_DATA}
+              onUserAnswer={() => {}}
+              onWelcomeButtonClick={() => {}}
+              step={-1}
+            />
+          </Provider>
+      )
       .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
   it(`App renders GameGenreScreen`, () => {
+    const store = mockStore({
+      mistakes: 3,
+    });
+
     const tree = renderer
       .create(
-          <App
-            errorsAmount={ERRORS_AMOUNT}
-            questions={QUESTIONS_DATA}
-            onUserAnswer={() => {}}
-            onWelcomeButtonClick={() => {}}
-            step={0}
-          />, {
+          <Provider store={store}>
+            <App
+              maxMistakes={ERRORS_AMOUNT}
+              questions={QUESTIONS_DATA}
+              onUserAnswer={() => {}}
+              onWelcomeButtonClick={() => {}}
+              step={0}
+            />
+          </Provider>, {
             createNodeMock: () => {
               return {};
             }
@@ -89,15 +105,21 @@ describe(`App rendering`, () => {
   });
 
   it(`App renders GameArtistScreen`, () => {
+    const store = mockStore({
+      mistakes: 3,
+    });
+
     const tree = renderer
       .create(
-          <App
-            errorsAmount={ERRORS_AMOUNT}
-            questions={QUESTIONS_DATA}
-            onUserAnswer={() => {}}
-            onWelcomeButtonClick={() => {}}
-            step={1}
-          />, {
+          <Provider store={store}>
+            <App
+              maxMistakes={ERRORS_AMOUNT}
+              questions={QUESTIONS_DATA}
+              onUserAnswer={() => {}}
+              onWelcomeButtonClick={() => {}}
+              step={1}
+            />
+          </Provider>, {
             createNodeMock: () => {
               return {};
             }
