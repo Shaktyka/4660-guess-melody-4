@@ -375,7 +375,7 @@ exports[`App rendering App renders GameGenreScreen 1`] = `
 </section>
 `;
 
-exports[`App rendering App renders correctly 1`] = `
+exports[`App rendering App renders WelcomeScreen 1`] = `
 <section
   className="welcome"
 >
@@ -417,7 +417,7 @@ exports[`App rendering App renders correctly 1`] = `
     </li>
     <li>
       Можно допустить 
-      4
+      3
        ошибки.
     </li>
   </ul>

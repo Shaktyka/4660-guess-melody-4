@@ -1,49 +1,39 @@
 import {reducer, ActionType, ActionCreator} from './reducer.js';
 
-const QUESTIONS_DATA = [
+const questions = [
   {
     type: `genre`,
     genre: `rock`,
-    answers: [
-      {
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-        genre: `rock`,
-      },
-      {
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-        genre: `blues`,
-      },
-      {
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-        genre: `jazz`,
-      },
-      {
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-        genre: `rock`,
-      }
-    ]
-  },
-  {
+    answers: [{
+      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+      genre: `rock`,
+    }, {
+      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+      genre: `blues`,
+    }, {
+      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+      genre: `jazz`,
+    }, {
+      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+      genre: `rock`,
+    }],
+  }, {
     type: `artist`,
     song: {
-      artist: `Audionautix`,
+      artist: `Jim Beam`,
       src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
     },
-    answers: [
-      {
-        picture: `https://api.adorable.io/avatars/128/90`,
-        artist: `Test 1`,
-      },
-      {
-        picture: `https://api.adorable.io/avatars/128/91`,
-        artist: `Test 2`,
-      },
-      {
-        picture: `https://api.adorable.io/avatars/128/92`,
-        artist: `Test 3`,
-      }
-    ]
-  }
+    answers: [{
+      picture: `https://api.adorable.io/avatars/128/A`,
+      artist: `John Snow`,
+    }, {
+      picture: `https://api.adorable.io/avatars/128/AB`,
+      artist: `Jack Daniels`,
+    }, {
+      picture: `https://api.adorable.io/avatars/128/AC`,
+      artist: `Jim Beam`,
+    }],
+  },
 ];
 
 describe(`Reducer tests`, () => {
@@ -53,7 +43,7 @@ describe(`Reducer tests`, () => {
       step: -1,
       mistakes: 0,
       maxMistakes: 3,
-      questions: QUESTIONS_DATA
+      questions
     });
   });
 
@@ -61,27 +51,27 @@ describe(`Reducer tests`, () => {
     expect(reducer({
       step: -1,
       mistakes: 0,
-      questions: QUESTIONS_DATA
+      questions
     }, {
       type: ActionType.INCREMENT_STEP,
       payload: 1,
     })).toEqual({
       step: 0,
       mistakes: 0,
-      questions: QUESTIONS_DATA
+      questions
     });
 
     expect(reducer({
       step: -1,
       mistakes: 0,
-      questions: QUESTIONS_DATA
+      questions
     }, {
       type: ActionType.INCREMENT_STEP,
       payload: 0,
     })).toEqual({
       step: -1,
       mistakes: 0,
-      questions: QUESTIONS_DATA
+      questions
     });
   });
 
@@ -120,7 +110,7 @@ describe(`Action creators work correctly`, () => {
   });
 
   it(`Action creator for incrementing mistake returns action with 0 payload if answer for artist is correct`, () => {
-    expect(ActionCreator.incrementMistake({
+    expect(ActionCreator.incrementMistakes({
       type: `artist`,
       song: {
         artist: `correct`,
@@ -148,7 +138,7 @@ describe(`Action creators work correctly`, () => {
   });
 
   it(`Action creator for incrementing mistake returns action with 1 payload if answer for artist is incorrect`, () => {
-    expect(ActionCreator.incrementMistake({
+    expect(ActionCreator.incrementMistakes({
       type: `artist`,
       song: {
         artist: `correct`,
@@ -176,7 +166,7 @@ describe(`Action creators work correctly`, () => {
   });
 
   it(`Action creator for incrementing mistake returns action with 0 payload if answer for genre is correct`, () => {
-    expect(ActionCreator.incrementMistake({
+    expect(ActionCreator.incrementMistakes({
       type: `genre`,
       genre: `jazz`,
       answers: [
@@ -201,7 +191,7 @@ describe(`Action creators work correctly`, () => {
   });
 
   it(`Action creator for incrementing mistake returns action with 1 payload if answer for genre is incorrect`, () => {
-    expect(ActionCreator.incrementMistake({
+    expect(ActionCreator.incrementMistakes({
       type: `genre`,
       genre: `jazz`,
       answers: [
