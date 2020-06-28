@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import GameType from "../../const.js";
+import GameType from '../../const.js';
 
 import Mistakes from '../mistakes/mistakes.jsx';
 
