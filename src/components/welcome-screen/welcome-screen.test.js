@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import WelcomeScreen from './welcome-screen.jsx';
 
 const ERRORS_AMOUNT = 4;
-const welcomeButtonClickHandler = () => {};
+const onWelcomeButtonClick = () => {};
 
 describe(`WelcomeScreen rendering`, () => {
 
@@ -13,7 +13,7 @@ describe(`WelcomeScreen rendering`, () => {
       .toJSON(
           <WelcomeScreen
             errors={ERRORS_AMOUNT}
-            welcomeButtonClickHandler={welcomeButtonClickHandler}
+            onWelcomeButtonClick={onWelcomeButtonClick}
           />
       );
 

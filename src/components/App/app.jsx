@@ -1,6 +1,8 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer.js';
 
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 import GameScreen from '../game-screen/game-screen.jsx';
@@ -14,28 +16,23 @@ const GameArtistScreenWrapped = withAudioPlayer(GameArtistScreen);
 const GameGenreScreenWrapped = withAudioPlayer(GameGenreScreen);
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      step: -1,
-    };
-  }
 
   _renderGameScreen() {
-    const {errorsAmount, questions} = this.props;
-    const {step} = this.state;
+    const {
+      maxMistakes,
+      questions,
+      onUserAnswer,
+      onWelcomeButtonClick,
+      step
+    } = this.props;
+
     const question = questions[step];
 
     if (step === -1 || step >= questions.length) {
       return (
         <WelcomeScreen
-          errors={errorsAmount}
-          welcomeButtonClickHandler={() => {
-            this.setState({
-              step: 0,
-            });
-          }}
+          errors={maxMistakes}
+          onWelcomeButtonClick={onWelcomeButtonClick}
         />
       );
     }
@@ -49,11 +46,7 @@ class App extends PureComponent {
             >
               <GameArtistScreenWrapped
                 question={question}
-                onAnswer={() => {
-                  this.setState((prevState) => ({
-                    step: prevState.step + 1
-                  }));
-                }}
+                onAnswer={onUserAnswer}
               />
             </GameScreen>
           );
@@ -64,11 +57,7 @@ class App extends PureComponent {
             >
               <GameGenreScreenWrapped
                 question={question}
-                onAnswer={() => {
-                  this.setState((prevState) => ({
-                    step: prevState.step + 1
-                  }));
-                }}
+                onAnswer={onUserAnswer}
               />
             </GameScreen>
           );
@@ -87,11 +76,17 @@ class App extends PureComponent {
           <Route exact path="/">
             {this._renderGameScreen()}
           </Route>
-          <Route exact path="/dev-artist">
-            <GameArtistScreen question={questions[1]} onAnswer={() => {}} />
+          <Route exact path="/artist">
+            <GameArtistScreenWrapped
+              question={questions[1]}
+              onAnswer={() => {}}
+            />
           </Route>
-          <Route exact path="/dev-genre">
-            <GameGenreScreen question={questions[0]} onAnswer={() => {}} />
+          <Route exact path="/genre">
+            <GameGenreScreenWrapped
+              question={questions[0]}
+              onAnswer={() => {}}
+            />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -100,13 +95,33 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  errorsAmount: PropTypes.number.isRequired,
+  maxMistakes: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(
       PropTypes.shape({
         type: PropTypes.string.isRequired,
         answers: PropTypes.arrayOf(PropTypes.object).isRequired
       })
-  ).isRequired
+  ).isRequired,
+  onWelcomeButtonClick: PropTypes.func.isRequired,
+  onUserAnswer: PropTypes.func.isRequired,
+  step: PropTypes.number.isRequired
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  step: state.step,
+  maxMistakes: state.maxMistakes,
+  questions: state.questions
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onWelcomeButtonClick() {
+    dispatch(ActionCreator.incrementStep());
+  },
+  onUserAnswer(question, answer) {
+    dispatch(ActionCreator.incrementMistakes(question, answer));
+    dispatch(ActionCreator.incrementStep());
+  }
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
