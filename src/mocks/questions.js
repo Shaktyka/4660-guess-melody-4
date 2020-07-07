@@ -1,4 +1,4 @@
-const AVATAR_URL = `https://api.adorable.io/avatars/128`;
+// const AVATAR_URL = `https://api.adorable.io/avatars/128`;
 
 const QUESTIONS_DATA = [
   {
@@ -26,23 +26,19 @@ const QUESTIONS_DATA = [
   {
     type: `artist`,
     song: {
-      artist: `Jingle Punks`,
-      src: `https://www.youtube.com/audiolibrary_download?vid=dc3b4dc549becd6b`,
+      artist: `Jim Beam`,
+      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
     },
-    answers: [
-      {
-        picture: `${AVATAR_URL}/${Math.random() * 100}`,
-        artist: `Kevin MacLeod`,
-      },
-      {
-        picture: `${AVATAR_URL}/${Math.random() * 100}`,
-        artist: `Jingle Punks`,
-      },
-      {
-        picture: `${AVATAR_URL}/${Math.random() * 100}`,
-        artist: `Lordi`,
-      }
-    ]
+    answers: [{
+      picture: `https://api.adorable.io/avatars/128/A`,
+      artist: `John Snow`,
+    }, {
+      picture: `https://api.adorable.io/avatars/128/AB`,
+      artist: `Jack Daniels`,
+    }, {
+      picture: `https://api.adorable.io/avatars/128/AC`,
+      artist: `Jim Beam`,
+    }],
   }
 ];
 

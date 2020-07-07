@@ -148,7 +148,7 @@ describe(`App rendering`, () => {
               mistakes={3}
               questions={QUESTIONS_DATA}
               onUserAnswer={() => {}}
-              onWelcomeBtnClick={() => {}}
+              onWelcomeButtonClick={() => {}}
               step={1}
               resetGame={() => {}}
             />
@@ -175,7 +175,7 @@ describe(`App rendering`, () => {
               mistakes={0}
               questions={QUESTIONS_DATA}
               onUserAnswer={() => {}}
-              onWelcomeBtnClick={() => {}}
+              onWelcomeButtonClick={() => {}}
               step={3}
               resetGame={() => {}}
             />

@@ -15,7 +15,7 @@ describe(`FailureScreen works correctly`, () => {
 
     const screen = shallow(
         <FailureScreen
-          onTryAgainClick={onClick}
+          onReplayBtnClick={onClick}
         />
     );
 
