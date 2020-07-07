@@ -3,17 +3,56 @@ import renderer from 'react-test-renderer';
 
 import SuccessScreen from './success-screen.jsx';
 
-describe(`SuccessScreen rendering`, () => {
+describe(`With 3 questions`, () => {
 
-  it(`SuccessScreen renders correctly`, () => {
+  it(`With 0 mistake`, () => {
+    const tree = renderer
+      .create(<SuccessScreen
+        questionsCount={3}
+        mistakesCount={0}
+        onReplayBtnClick={() => {}}
+      />)
+      .toJSON();
 
-    const tree = renderer.create(
-        <SuccessScreen
-          errors={2}
-          responses={6}
-          onPlayMoreClick={() => {}}
-        />
-    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`With 1 mistake`, () => {
+    const tree = renderer
+      .create(<SuccessScreen
+        questionsCount={3}
+        mistakesCount={1}
+        onReplayBtnClick={() => {}}
+      />)
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+});
+
+describe(`With 2 questions`, () => {
+
+  it(`With 0 mistake`, () => {
+    const tree = renderer
+      .create(<SuccessScreen
+        questionsCount={2}
+        mistakesCount={0}
+        onReplayBtnClick={() => {}}
+      />)
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`With 1 mistake`, () => {
+    const tree = renderer
+      .create(<SuccessScreen
+        questionsCount={2}
+        mistakesCount={1}
+        onReplayBtnClick={() => {}}
+      />)
+      .toJSON();
 
     expect(tree).toMatchSnapshot();
   });

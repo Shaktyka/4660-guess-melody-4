@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SuccessScreen = (props) => {
-  const {errors, responses, onPlayMoreClick} = props;
+  const {questionsCount, mistakesCount, onReplayBtnClick} = props;
+  const correctlyQuestionsCount = questionsCount - mistakesCount;
 
   return (
     <section className="result">
@@ -10,11 +11,12 @@ const SuccessScreen = (props) => {
         <img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83" />
       </div>
       <h2 className="result__title">Вы настоящий меломан!</h2>
-      <p className="result__total">Вы ответили правильно на {responses} вопросов и совершили {errors} ошибки</p>
+      <p className="result__total">Вы ответили правильно на {correctlyQuestionsCount} вопросов
+        и совершили {mistakesCount} ошибки</p>
       <button
         className="replay"
         type="button"
-        onClick={() => onPlayMoreClick()}
+        onClick={onReplayBtnClick}
       >
         Сыграть ещё раз
       </button>
@@ -23,9 +25,9 @@ const SuccessScreen = (props) => {
 };
 
 SuccessScreen.propTypes = {
-  errors: PropTypes.number.isRequired,
-  responses: PropTypes.number.isRequired,
-  onPlayMoreClick: PropTypes.func.isRequired
+  questionsCount: PropTypes.number.isRequired,
+  mistakesCount: PropTypes.number.isRequired,
+  onReplayBtnClick: PropTypes.func.isRequired
 };
 
 export default SuccessScreen;

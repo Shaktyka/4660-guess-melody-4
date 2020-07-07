@@ -15,9 +15,9 @@ describe(`SuccessScreen works correctly`, () => {
 
     const screen = shallow(
         <SuccessScreen
-          errors={2}
-          responses={6}
-          onPlayMoreClick={onClick}
+          questionsCount={6}
+          mistakesCount={2}
+          onReplayBtnClick={onClick}
         />
     );
 

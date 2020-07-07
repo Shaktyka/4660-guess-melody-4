@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const FailureScreen = (props) => {
-  const {onTryAgainClick} = props;
+  const {onReplayBtnClick} = props;
 
   return (
     <section className="result">
@@ -16,7 +16,7 @@ const FailureScreen = (props) => {
       <button
         className="replay"
         type="button"
-        onClick={onTryAgainClick}
+        onClick={onReplayBtnClick}
       >
         Попробовать ещё раз
       </button>
@@ -25,7 +25,7 @@ const FailureScreen = (props) => {
 };
 
 FailureScreen.propTypes = {
-  onTryAgainClick: PropTypes.func.isRequired
+  onReplayBtnClick: PropTypes.func.isRequired
 };
 
 export default FailureScreen;

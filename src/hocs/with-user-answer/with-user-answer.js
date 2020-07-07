@@ -1,6 +1,5 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {GameType} from '../../const.js';
 
 const withUserAnswer = (Component) => {
   class WithUserAnswer extends PureComponent {
@@ -54,7 +53,7 @@ const withUserAnswer = (Component) => {
         genre: PropTypes.string.isRequired
       })).isRequired,
       genre: PropTypes.string.isRequired,
-      type: PropTypes.oneOf([GameType.ARTIST, GameType.GENRE]).isRequired
+      type: PropTypes.string.isRequired
     }).isRequired,
     onAnswer: PropTypes.func.isRequired,
   };

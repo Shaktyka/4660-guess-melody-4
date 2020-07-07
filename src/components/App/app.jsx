@@ -8,18 +8,23 @@ import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 import GameScreen from '../game-screen/game-screen.jsx';
 import GameArtistScreen from '../game-artist-screen/game-artist-screen.jsx';
 import GameGenreScreen from '../game-genre-screen/game-genre-screen.jsx';
+import SuccessScreen from '../success-screen/success-screen.jsx';
+import FailureScreen from '../failure-screen/failure-screen.jsx';
+
 import withActivePlayer from '../../hocs/with-active-player/with-active-player.js';
+import withUserAnswer from '../../hocs/with-user-answer/with-user-answer.js';
 
 import GameType from "../../const.js";
 
 const GameArtistScreenWrapped = withActivePlayer(GameArtistScreen);
-const GameGenreScreenWrapped = withActivePlayer(GameGenreScreen);
+const GameGenreScreenWrapped = withActivePlayer(withUserAnswer(GameGenreScreen));
 
 class App extends PureComponent {
 
   _renderGameScreen() {
     const {
       maxMistakes,
+      mistakes,
       questions,
       onUserAnswer,
       onWelcomeButtonClick,
@@ -28,11 +33,29 @@ class App extends PureComponent {
 
     const question = questions[step];
 
-    if (step === -1 || step >= questions.length) {
+    if (step === -1) {
       return (
         <WelcomeScreen
           errors={maxMistakes}
           onWelcomeButtonClick={onWelcomeButtonClick}
+        />
+      );
+    }
+
+    if (mistakes >= maxMistakes) {
+      return (
+        <FailureScreen
+          onReplayBtnClick={() => {}}
+        />
+      );
+    }
+
+    if (step >= questions.length) {
+      return (
+        <SuccessScreen
+          questionsCount={questions.length}
+          mistakesCount={mistakes}
+          onReplayButtonClick={() => {}}
         />
       );
     }
@@ -96,6 +119,7 @@ class App extends PureComponent {
 
 App.propTypes = {
   maxMistakes: PropTypes.number.isRequired,
+  mistakes: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(
       PropTypes.shape({
         type: PropTypes.string.isRequired,
@@ -110,7 +134,8 @@ App.propTypes = {
 const mapStateToProps = (state) => ({
   step: state.step,
   maxMistakes: state.maxMistakes,
-  questions: state.questions
+  questions: state.questions,
+  mistakes: state.mistakes
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -8,7 +8,7 @@ describe(`FailureScreen rendering`, () => {
   it(`FailureScreen renders correctly`, () => {
     const tree = renderer.create(
         <FailureScreen
-          onTryAgainClick={() => {}}
+          onReplayBtnClick={() => {}}
         />
     ).toJSON();
 
