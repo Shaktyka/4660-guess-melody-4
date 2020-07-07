@@ -109,6 +109,14 @@ describe(`Action creators work correctly`, () => {
     });
   });
 
+  it(`Action creator for reset game returns action with null payload`, () => {
+    expect(ActionCreator.resetGame())
+      .toEqual({
+        type: ActionType.RESET,
+        payload: null
+      });
+  });
+
   it(`Action creator for incrementing mistake returns action with 0 payload if answer for artist is correct`, () => {
     expect(ActionCreator.incrementMistakes({
       type: `artist`,

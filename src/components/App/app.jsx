@@ -28,7 +28,8 @@ class App extends PureComponent {
       questions,
       onUserAnswer,
       onWelcomeButtonClick,
-      step
+      step,
+      resetGame
     } = this.props;
 
     const question = questions[step];
@@ -45,7 +46,7 @@ class App extends PureComponent {
     if (mistakes >= maxMistakes) {
       return (
         <FailureScreen
-          onReplayBtnClick={() => {}}
+          onReplayBtnClick={resetGame}
         />
       );
     }
@@ -55,7 +56,7 @@ class App extends PureComponent {
         <SuccessScreen
           questionsCount={questions.length}
           mistakesCount={mistakes}
-          onReplayButtonClick={() => {}}
+          onReplayButtonClick={resetGame}
         />
       );
     }
@@ -120,6 +121,7 @@ class App extends PureComponent {
 App.propTypes = {
   maxMistakes: PropTypes.number.isRequired,
   mistakes: PropTypes.number.isRequired,
+  resetGame: PropTypes.func.isRequired,
   questions: PropTypes.arrayOf(
       PropTypes.shape({
         type: PropTypes.string.isRequired,
