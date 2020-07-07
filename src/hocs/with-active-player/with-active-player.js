@@ -17,20 +17,22 @@ const withActivePlayer = (Component) => {
     render() {
       const {activePlayerId} = this.state;
 
-      return <Component
-        {...this.props}
-        renderPlayer={(src, id) => {
-          return (
-            <AudioPlayer
-              src={src}
-              isPlaying={id === activePlayerId}
-              onPlayButtonClick={() => this.setState({
-                activePlayerId: activePlayerId === id ? -1 : id
-              })}
-            />
-          );
-        }}
-      />;
+      return (
+        <Component
+          {...this.props}
+          renderPlayer={(src, id) => {
+            return (
+              <AudioPlayer
+                src={src}
+                isPlaying={id === activePlayerId}
+                onPlayButtonClick={() => this.setState({
+                  activePlayerId: activePlayerId === id ? -1 : id
+                })}
+              />
+            );
+          }}
+        />
+      );
     }
   }
 

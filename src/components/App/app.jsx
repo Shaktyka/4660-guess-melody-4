@@ -56,7 +56,7 @@ class App extends PureComponent {
         <SuccessScreen
           questionsCount={questions.length}
           mistakesCount={mistakes}
-          onReplayButtonClick={resetGame}
+          onReplayBtnClick={resetGame}
         />
       );
     }
