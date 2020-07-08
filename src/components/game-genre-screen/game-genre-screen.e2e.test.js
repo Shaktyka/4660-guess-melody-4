@@ -1,5 +1,5 @@
 import React from 'react';
-import {configure, shallow} from 'enzyme';
+import {configure, shallow, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import GameGenreScreen from './game-genre-screen.jsx';
 
@@ -38,8 +38,10 @@ describe(`GameGenreScreen works correctly`, () => {
     const genreQuestion = shallow(
         <GameGenreScreen
           onAnswer={onAnswer}
+          onChange={() => {}}
           question={MOCK_QUESTION}
           renderPlayer={() => {}}
+          userAnswers={[false, false, false, false]}
         />
     );
 
@@ -58,11 +60,13 @@ describe(`GameGenreScreen works correctly`, () => {
     const onAnswer = jest.fn((...args) => [...args]);
     const userAnswer = [false, true, false, false];
 
-    const genreQuestion = shallow(
+    const genreQuestion = mount(
         <GameGenreScreen
           onAnswer={onAnswer}
+          onChange={() => {}}
           question={MOCK_QUESTION}
           renderPlayer={() => {}}
+          userAnswers={userAnswer}
         />
     );
 
@@ -74,8 +78,7 @@ describe(`GameGenreScreen works correctly`, () => {
 
     expect(onAnswer).toHaveBeenCalledTimes(1);
 
-    expect(onAnswer.mock.calls[0][0]).toMatchObject(MOCK_QUESTION);
-    expect(onAnswer.mock.calls[0][1]).toMatchObject(userAnswer);
+    expect(onAnswer.mock.calls[0][0]).toEqual(undefined);
 
     expect(
         genreQuestion.find(`input`).map((it) => it.prop(`checked`))

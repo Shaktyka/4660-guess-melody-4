@@ -27,12 +27,32 @@ const TEST_QUESTION = {
 
 describe(`GameGenreScreen rendering`, () => {
 
-  it(`GameGenreScreen renders correctly`, () => {
+  it(`GameGenreScreen renders correctly without answers`, () => {
     const tree = renderer.create((
       <GameGenreScreen
         question={TEST_QUESTION}
         onAnswer={() => {}}
+        onChange={() => {}}
         renderPlayer={() => {}}
+        userAnswers={[false, false, false, false]}
+      />),
+    {
+      createNodeMock: () => {
+        return {};
+      }
+    }).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`GameGenreScreen renders correctly with 2 answers`, () => {
+    const tree = renderer.create((
+      <GameGenreScreen
+        question={TEST_QUESTION}
+        onAnswer={() => {}}
+        onChange={() => {}}
+        renderPlayer={() => {}}
+        userAnswers={[false, true, true, false]}
       />),
     {
       createNodeMock: () => {

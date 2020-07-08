@@ -4,20 +4,26 @@ const questions = [
   {
     type: `genre`,
     genre: `rock`,
-    answers: [{
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `rock`,
-    }, {
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `blues`,
-    }, {
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `jazz`,
-    }, {
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `rock`,
-    }],
-  }, {
+    answers: [
+      {
+        src: `https://www.youtube.com/audiolibrary_download?vid=a127d9b7de8a17cf`,
+        genre: `country`,
+      },
+      {
+        src: `https://www.youtube.com/audiolibrary_download?vid=dc3b4dc549becd6b`,
+        genre: `rock`,
+      },
+      {
+        src: `https://www.youtube.com/audiolibrary_download?vid=dfb828f40096184c`,
+        genre: `r&b`,
+      },
+      {
+        src: `https://www.youtube.com/audiolibrary_download?vid=bcbe5be936a32fb1`,
+        genre: `pop`,
+      }
+    ]
+  },
+  {
     type: `artist`,
     song: {
       artist: `Jim Beam`,
@@ -33,7 +39,7 @@ const questions = [
       picture: `https://api.adorable.io/avatars/128/AC`,
       artist: `Jim Beam`,
     }],
-  },
+  }
 ];
 
 describe(`Reducer tests`, () => {
@@ -107,6 +113,14 @@ describe(`Action creators work correctly`, () => {
       type: ActionType.INCREMENT_STEP,
       payload: 1,
     });
+  });
+
+  it(`Action creator for reset game returns action with null payload`, () => {
+    expect(ActionCreator.resetGame())
+      .toEqual({
+        type: ActionType.RESET,
+        payload: null
+      });
   });
 
   it(`Action creator for incrementing mistake returns action with 0 payload if answer for artist is correct`, () => {

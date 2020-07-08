@@ -1,26 +1,23 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+
 import AudioPlayer from './audio-player.jsx';
 
-const SRC = `https://www.youtube.com/audiolibrary_download?vid=79100e44c826e2f7`;
-const IS_PLAYING = false;
+const SRC = `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`;
 
-describe(`AudioPlayer rendering`, () => {
+it(`AudioPlayer is rendered correctly`, () => {
+  const tree = renderer.create(<AudioPlayer
+    isPlaying={false}
+    isLoading={true}
+    onPlayButtonClick={() => {}}
+    src={SRC}
+  >
+    <audio />
+  </AudioPlayer>, {
+    createNodeMock: () => {
+      return {};
+    }
+  }).toJSON();
 
-  it(`AudioPlayer renders correctly`, () => {
-    const tree = renderer.create(
-        <AudioPlayer
-          isPlaying={IS_PLAYING}
-          onPlayButtonClick={() => {}}
-          src={SRC}
-        />, {
-          createNodeMock: () => {
-            return {};
-          }
-        }
-    ).toJSON;
-
-    expect(tree).toMatchSnapshot();
-  });
-
+  expect(tree).toMatchSnapshot();
 });
